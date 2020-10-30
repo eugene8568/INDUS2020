@@ -1,4 +1,5 @@
 # To run
+```
 sails lift
 
 ## API Server Set Up
