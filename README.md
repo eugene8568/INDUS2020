@@ -1,7 +1,7 @@
 # To run
 ```
 sails lift
-
+```
 ## API Server Set Up
 ## Nodejs and npm version update
 Prerequisite CHECK NPM & NODE.JS VERSION IN YOUR SYSTEM.\
