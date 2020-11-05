@@ -19,6 +19,12 @@ Source the environment
 ```
 source /opt/ros/eloquent/setup.bash
 ```
+
+## rclnodejs set-up(Eloquent version)
+```
+npm inpm i rclnodejs@0.13.0
+```
+
 ## Sails set-up
 Use the following command to install Sails.
 ```
