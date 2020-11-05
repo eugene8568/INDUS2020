@@ -13,22 +13,18 @@ module.exports.bootstrap = async function(cb) {
 
   await sails.config.rclnode.init();
   const server_sub_node = sails.config.rclnode.createNode('server_subscription_node');
+  const indus_ui_node = sails.config.rclnode.createNode('indus_ui_node');
   global.teleop_node = sails.config.rclnode.createNode('teleop_node');
 
-  server_sub_node.createSubscription('std_msgs/msg/String', 'job', msg => {
-    // console.log(msg);
-    var jobMsg= JSON.parse((Object.values(msg)));
-    var statusCode = jobMsg.status;
+  global.indus_publisher = indus_ui_node.createPublisher('std_msgs/msg/String', 'indus');
+
+  server_sub_node.createSubscription('std_msgs/msg/String', 'indus', msg => {
+    console.log(' msg ',msg);
+    msg= "heelooooooo"
+    // var jobMsg= JSON.parse((Object.values(msg)));
+    // var statusCode = jobMsg.status;
     // var amr_id = jobMsg.selected_amr;
     // var amr_name = jobMsg.robot_name;
-
-    if (statusCode!=1){
-      jobStatusUpdate(msg);
-      sails.log.info('Job ID: ',jobMsg.job_id,' Status: ',jobMsg.status);
-    }else{
-      sails.log.info('Job created from UI! Publish to /job topic now');
-    }
-    // console.log(msg);
   });
 
   sails.config.rclnode.spinNode(server_sub_node);
